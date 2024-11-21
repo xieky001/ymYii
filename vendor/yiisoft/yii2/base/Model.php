@@ -351,7 +351,7 @@ class Model extends Component implements StaticInstanceInterface, IteratorAggreg
         if (!$this->beforeValidate()) {
             return false;
         }
-
+        
         $scenarios = $this->scenarios();
         $scenario = $this->getScenario();
         if (!isset($scenarios[$scenario])) {
@@ -363,12 +363,13 @@ class Model extends Component implements StaticInstanceInterface, IteratorAggreg
         }
 
         $attributeNames = (array)$attributeNames;
-
+        
         foreach ($this->getActiveValidators() as $validator) {
             $validator->validateAttributes($this, $attributeNames);
         }
+        
         $this->afterValidate();
-
+        
         return !$this->hasErrors();
     }
 
